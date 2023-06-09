@@ -31,9 +31,19 @@ services:
       KC_DB_PASSWORD: ${DATABASE_PASSWORD}
       KEYCLOAK_ADMIN: ${KEYCLOAK_USER}
       KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_PASSWORD}
+    volumes:
+      - ./keycloak/themes/mytheme:/opt/keycloak/themes/mytheme
     ports:
       - 8080:8080
     depends_on:
       postgres:
         condition: service_started
     command: [ "start-dev" ]
+  build:
+    image: maven:3.8.1-openjdk-17-slim
+    container_name: mysandbox_auth_keycloak-providers
+    volumes:
+      - ./keycloak/providers:/usr/src/mymaven
+      - ~/.m2:/root/.m2
+    working_dir: /usr/src/mymaven/app
+    command: mvn install
