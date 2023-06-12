@@ -62,6 +62,13 @@
       <version>21.1.1</version>
       <scope>provided</scope>
     </dependency>
+    
+    <!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka -->
+    <dependency>
+      <groupId>org.apache.kafka</groupId>
+      <artifactId>kafka-clients</artifactId>
+      <version>3.1.0</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -113,5 +120,10 @@
       </plugins>
     </pluginManagement>
   </build>
+
+  <!-- sub modules -->
+	<modules>
+    <module>kafka-client</module>
+  </modules>
 
 </project>
