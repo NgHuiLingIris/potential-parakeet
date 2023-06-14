@@ -61,6 +61,7 @@ public final class KafkaStandardProducerFactory {
     props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, serializer);
     props.put(ProducerConfig.REQUEST_TIMEOUT_MS_CONFIG, 3000);
     props.put(ProducerConfig.LINGER_MS_CONFIG, 300);
+    props.put(ProducerConfig.ACKS_CONFIG, "1");
     props.put("security.protocol", "SSL");
 
     if (username != null && password != null) {

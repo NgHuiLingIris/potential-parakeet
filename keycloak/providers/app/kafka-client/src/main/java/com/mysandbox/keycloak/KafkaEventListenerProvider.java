@@ -5,6 +5,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
@@ -59,8 +60,15 @@ public class KafkaEventListenerProvider implements EventListenerProvider {
   private void produceEvent(String event, String topic)
       throws InterruptedException, ExecutionException, TimeoutException {
     ProducerRecord<String, String> record = new ProducerRecord<>(topic, event.toString());
-    Future<RecordMetadata> metaData = producer.send(record);
-    RecordMetadata recordMetadata = metaData.get(30, TimeUnit.SECONDS);
+    producer.send(record, new Callback() {
+      public void onCompletion(RecordMetadata metadata, Exception exception) {
+              if (exception != null) {
+                  logger.error("Error while producing message to topic :" + metadata, exception);
+              } else {
+                  logger.info("sent message to topic:" + metadata.topic() + " partition:" + metadata.partition() + " offset:" + metadata.offset() + " timestamp:" + metadata.timestamp());
+              }
+          }
+      });
   }
 
   @Override
