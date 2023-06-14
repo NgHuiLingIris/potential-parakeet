@@ -124,6 +124,7 @@
   <!-- sub modules -->
 	<modules>
     <module>kafka-client</module>
+    <module>kafka-consumer</module>
   </modules>
 
 </project>

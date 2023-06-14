@@ -1,2 +1,3 @@
 keycloak/providers/app/kafka-client/target/*
 keycloak/providers/dist/*
+keycloak/providers/app/kafka-consumer/target/*
