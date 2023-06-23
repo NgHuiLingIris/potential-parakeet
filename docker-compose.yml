@@ -37,7 +37,7 @@ services:
       - ./keycloak/themes/mytheme:/opt/keycloak/themes/mytheme
       - ./keycloak/providers/dist:/opt/keycloak/providers
     ports:
-      - 8080:8080
+      - 8180:8080
     depends_on:
       postgres:
         condition: service_started

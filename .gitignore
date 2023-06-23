@@ -1,3 +1,6 @@
 keycloak/providers/app/kafka-client/target/*
 keycloak/providers/dist/*
 keycloak/providers/app/kafka-consumer/target/*
+service-nodejs/node_modules/*
+app-api/node_modules/*
+app-nodejs-html5/node_modules/*
