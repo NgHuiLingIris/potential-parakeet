@@ -1,6 +1,10 @@
 # potential-parakeet
+Keycloak 21.1.0 Tutorial/ Boilerplate code
+
+To start:
 Run Docker Compose with `docker-compose up`
 
+To enable full testing:
 For each `app-api`, `app-nodejs-html5` and `service-nodejs`, cd into each of the folder and type
 `npm install && npm start`
 
