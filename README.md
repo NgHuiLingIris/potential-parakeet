@@ -1,13 +1,14 @@
 # potential-parakeet
 Keycloak 21.1.0 Tutorial/ Boilerplate code
 
-To start:
+## To start
 Run Docker Compose with `docker-compose up`
 
-To enable full testing:
+## To enable full testing
 For each `app-api`, `app-nodejs-html5` and `service-nodejs`, cd into each of the folder and type
 `npm install && npm start`
 
+## References
 You can check out the corresponding articles here:
 - https://mobileappcircular.com/extending-and-customizing-keycloak-f0f0688c2785
 - https://medium.com/@equinox.explores/extending-kafka-in-keycloak-6c08bc93ff47
