@@ -4,3 +4,4 @@ keycloak/providers/app/kafka-consumer/target/*
 service-nodejs/node_modules/*
 app-api/node_modules/*
 app-nodejs-html5/node_modules/*
+keycloak/providers/app/user-federation/target/*
