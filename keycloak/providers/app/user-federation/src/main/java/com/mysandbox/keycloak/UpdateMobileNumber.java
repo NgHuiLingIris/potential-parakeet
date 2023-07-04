@@ -1,9 +1,13 @@
 package com.mysandbox.keycloak;
 
+import org.keycloak.Config.Scope;
 import org.keycloak.authentication.InitiatedActionSupport;
 import org.keycloak.authentication.RequiredActionContext;
+import org.keycloak.authentication.RequiredActionFactory;
 import org.keycloak.authentication.RequiredActionProvider;
 import org.keycloak.forms.login.LoginFormsProvider;
+import org.keycloak.models.KeycloakSession;
+import org.keycloak.models.KeycloakSessionFactory;
 import org.keycloak.models.UserModel;
 import org.keycloak.models.utils.FormMessage;
 import org.keycloak.services.validation.Validation;
@@ -12,10 +16,7 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import java.util.function.Consumer;
 
-/**
- * @author Niko Köbler, https://www.n-k.de, @dasniko
- */
-public class MobileNumberRequiredAction implements RequiredActionProvider {
+public class UpdateMobileNumber implements RequiredActionProvider, RequiredActionFactory {
 
 	public static final String PROVIDER_ID = "mobile-number-ra";
 
@@ -75,6 +76,29 @@ public class MobileNumberRequiredAction implements RequiredActionProvider {
 		}
 
 		return form.createForm("update-mobile-number.ftl");
+	}
+
+	@Override
+	public RequiredActionProvider create(KeycloakSession session) {
+		return this;
+	}
+
+	@Override
+	public void init(Scope config) {
+	}
+
+	@Override
+	public void postInit(KeycloakSessionFactory factory) {
+	}
+
+	@Override
+	public String getId() {
+		return PROVIDER_ID;
+	}
+
+	@Override
+	public String getDisplayText() {
+		return "Update mobile number";
 	}
 
 }
