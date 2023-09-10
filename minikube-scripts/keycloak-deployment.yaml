@@ -43,11 +43,22 @@ spec:
               value: keycloak
             - name: KEYCLOAK_ADMIN
               value: admin
+            - name: KAFKA_BOOTSTRAP_SERVERS
+              value: <BOOTSTRAP_SERVERS>
+            - name: KAFKA_USERNAME
+              value: <KAFKA_USERNAME>
+            - name: KAFKA_TOPIC_PREFIX
+              value: <KAFKA_PASSWORD>
             - name: KEYCLOAK_ADMIN_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: keycloak-secrets
                   key: KEYCLOAK_ADMIN_PASSWORD
+            - name: KAFKA_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-secrets
+                  key: KAFKA_PASSWORD
           image: quay.io/keycloak/keycloak:21.0.0
           name: keycloak
           ports:
@@ -56,9 +67,13 @@ spec:
           volumeMounts:
             - mountPath: /opt/keycloak/themes
               name: keycloak-themes-volume
+            - mountPath: /opt/keycloak/providers
+              name: keycloak-provider-volume
       restartPolicy: Always
       volumes:
         - name: keycloak-themes-volume
           hostPath:
-            path: /host
-status: {}
+            path: /host/themes
+        - name: keycloak-provider-volume
+          hostPath:
+            path: /host/providers/dist

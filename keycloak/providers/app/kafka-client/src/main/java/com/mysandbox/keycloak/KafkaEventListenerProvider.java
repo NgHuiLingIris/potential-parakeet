@@ -1,8 +1,6 @@
 package com.mysandbox.keycloak;
 
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import org.apache.kafka.clients.producer.Callback;
@@ -17,7 +15,6 @@ import org.keycloak.models.KeycloakSession;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mysandbox.keycloak.KafkaStandardProducerFactory;
 
 public class KafkaEventListenerProvider implements EventListenerProvider {
 
@@ -37,7 +34,7 @@ public class KafkaEventListenerProvider implements EventListenerProvider {
   private String getTopic(Event event, AdminEvent adminEvent) {
     String realm = "";
     String prefix = "";
-    realm = event.getRealmId();
+    realm = "realm"; // TO DO: get realm name instead
     prefix = factory.topicPrefix != null ? factory.topicPrefix + "-" : prefix;
     String topic = prefix + realm;
     return topic;
