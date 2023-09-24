@@ -9,10 +9,12 @@ metadata:
     io.kompose.service: keycloak
   name: keycloak
 spec:
+  type: LoadBalancer
   ports:
-    - name: "8180"
-      port: 8180
+    - name: "keycloak"
+      port: 8080
       targetPort: 8080
+      protocol: TCP
   selector:
     io.kompose.service: keycloak
 status:

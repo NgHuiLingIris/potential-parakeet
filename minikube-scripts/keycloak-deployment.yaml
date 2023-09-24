@@ -9,7 +9,7 @@ metadata:
     io.kompose.service: keycloak
   name: keycloak
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       io.kompose.service: keycloak
@@ -44,11 +44,17 @@ spec:
             - name: KEYCLOAK_ADMIN
               value: admin
             - name: KAFKA_BOOTSTRAP_SERVERS
-              value: <BOOTSTRAP_SERVERS>
+              value: dory.srvs.cloudkafka.com:9094
             - name: KAFKA_USERNAME
-              value: <KAFKA_USERNAME>
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-secrets
+                  key: KAFKA_USERNAME
             - name: KAFKA_TOPIC_PREFIX
-              value: <KAFKA_PASSWORD>
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-secrets
+                  key: KAFKA_TOPIC_PREFIX
             - name: KEYCLOAK_ADMIN_PASSWORD
               valueFrom:
                 secretKeyRef:
