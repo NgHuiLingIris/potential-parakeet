@@ -4,6 +4,8 @@ metadata:
   annotations:
     kompose.cmd: kompose convert
     kompose.version: 1.26.0 (40646f47)
+    prometheus.io/scrape: 'true'
+    prometheus.io/path: '/metrics'
   creationTimestamp: null
   labels:
     io.kompose.service: keycloak
@@ -65,6 +67,14 @@ spec:
                 secretKeyRef:
                   name: keycloak-secrets
                   key: KAFKA_PASSWORD
+            - name: KC_CACHE
+              value: ispn
+            - name: KC_LOG_LEVEL
+              value: INFO,org.infinispan:DEBUG,org.jgroups:DEBUG
+            - name: KC_HEALTH_ENABLED
+              value: 'true'
+            - name: KC_METRICS_ENABLED
+              value: 'true'
           image: quay.io/keycloak/keycloak:21.0.0
           name: keycloak
           ports:
