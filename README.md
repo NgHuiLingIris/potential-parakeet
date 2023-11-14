@@ -4,13 +4,18 @@ Keycloak 21.1.0 Tutorial/ Boilerplate code
 ## To start
 Run Docker Compose with `docker-compose up`
 
-## To enable full testing
-For each `app-api`, `app-nodejs-html5` and `service-nodejs`, cd into each of the folder and type
-`npm install && npm start`
+## To enable minikube/kubernetes deployment
+1 Update and Deploy the secrets: `kubectl apply -f minikube-scripts-secret`
+You can go cloud karafka for the test kafka cluster.
+Note to encode it in base64
+2 Follow the `setup.md` in minikube-scripts folder
+3 Deploy the application: `kubectl apply -f minikube-scripts`
+4 Deploy Prometheus: `kubectl apply -f prometheus-deployment`
+5 Deploy node-exporter: `kubectl apply -f node-exporter`
+6 Deploy cadvisor: `kubectl apply -f cadvisor`
+7 Deploy Grafana: `kubectl apply -f grafana-deployment`
 
 ## References
-You can check out the corresponding articles here:
-- https://mobileappcircular.com/extending-and-customizing-keycloak-f0f0688c2785
-- https://medium.com/@equinox.explores/extending-kafka-in-keycloak-6c08bc93ff47
-- https://mobileappcircular.com/taking-kafka-to-the-next-level-with-keycloak-a46f15feaa5c
-- https://code.likeagirl.io/untangling-keycloak-a-node-js-journey-2b004e3bde88
+You can check out the relevant articles here:
+https://medium.com/@equinox.explores/keycloak-prometheus-and-grafana-5c06a38720e2
+https://medium.com/mobile-app-circular/setting-up-local-ci-cd-with-keycloak-minikube-kubernetes-and-argocd-679617f58798
