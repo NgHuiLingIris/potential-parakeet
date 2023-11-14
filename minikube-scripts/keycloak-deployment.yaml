@@ -6,6 +6,7 @@ metadata:
     kompose.version: 1.26.0 (40646f47)
     prometheus.io/scrape: 'true'
     prometheus.io/path: '/metrics'
+    name: keycloak
   creationTimestamp: null
   labels:
     io.kompose.service: keycloak

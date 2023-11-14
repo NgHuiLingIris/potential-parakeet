@@ -1,8 +1,0 @@
-{
-  "realm": "quickstart",
-  "auth-server-url": "http://localhost:8180/",
-  "ssl-required": "external",
-  "resource": "service-nodejs",
-  "public-client": true,
-  "confidential-port": 0
-}
